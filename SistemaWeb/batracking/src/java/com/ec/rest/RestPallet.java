@@ -6,16 +6,8 @@ package com.ec.rest;
 
 import com.ec.entidad.Pallet;
 import com.ec.servicio.ServicioPallet;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -38,11 +30,7 @@ public class RestPallet {
             @FormParam("imei") String valor2) {
         Pallet pallet = new Pallet();
         //la logica de insertar
-
-
         boolean validar = false;
-
-
         //System.out.println("Ingresa al servicio");
 
         try {
