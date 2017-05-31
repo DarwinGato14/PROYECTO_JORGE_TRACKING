@@ -1,0 +1,523 @@
+/*==============================================================*/
+/* DBMS name:      PostgreSQL 8                                 */
+/* Created on:     30/5/2017 10:40:17                           */
+/*==============================================================*/
+
+
+drop index alerta_pk;
+
+drop table alerta;
+
+drop index distribuye_fk;
+
+drop index cliente_final_pk;
+
+drop table cliente_final;
+
+drop index fabricante_pk;
+
+drop table fabricante;
+
+drop index relationship_14_fk;
+
+drop table fotografias_seguimiento;
+
+drop index posee_fk;
+
+drop index fotografia_control_pk;
+
+drop table fotografia_control;
+
+drop index debe_tener_fk;
+
+drop index fotografia_pallet_pk;
+
+drop table fotografia_pallet;
+
+drop index presenta_fk;
+
+drop index fotografia_producto_pk;
+
+drop table fotografia_producto;
+
+drop index relationship_13_fk;
+
+drop index observacion_seguimiento_pk;
+
+drop table observacion_seguimiento;
+
+drop index pallet_pk;
+
+drop table pallet;
+
+drop index fabrica_fk;
+
+drop index contiene_fk;
+
+drop index producto_pk;
+
+drop table producto;
+
+drop index puntos_control_pk;
+
+drop table puntos_control;
+
+drop index relationship_11_fk;
+
+drop index controla_fk;
+
+drop index registra_fk;
+
+drop index se_incluye_fk;
+
+drop index seguimiento_pk;
+
+drop table seguimiento;
+
+drop index tipo_usuario_pk;
+
+drop table tipo_usuario;
+
+drop index relationship_12_fk;
+
+drop index usuario_pk;
+
+drop table usuario;
+
+/*==============================================================*/
+/* Table: alerta                                                */
+/*==============================================================*/
+create table alerta (
+   id_alerta            serial               not null,
+   alert_nombre         char(50)             null,
+   alert_desde          decimal(10,2)        null,
+   alerts_hasta         decimal(10,2)        null,
+   alert_semaforo       varchar(100)         null,
+   constraint pk_alerta primary key (id_alerta)
+);
+
+/*==============================================================*/
+/* Index: alerta_pk                                             */
+/*==============================================================*/
+create unique index alerta_pk on alerta (
+id_alerta
+);
+
+/*==============================================================*/
+/* Table: cliente_final                                         */
+/*==============================================================*/
+create table cliente_final (
+   id_cliente           serial               not null,
+   id_seguimiento       int4                 null,
+   cli_marca            varchar(30)          null,
+   cli_modelo           varchar(30)          null,
+   cli_observacion      varchar(150)         null,
+   cli_propietario      varchar(50)          null,
+   cli_contacto         varchar(25)          null,
+   constraint pk_cliente_final primary key (id_cliente)
+);
+
+/*==============================================================*/
+/* Index: cliente_final_pk                                      */
+/*==============================================================*/
+create unique index cliente_final_pk on cliente_final (
+id_cliente
+);
+
+/*==============================================================*/
+/* Index: distribuye_fk                                         */
+/*==============================================================*/
+create  index distribuye_fk on cliente_final (
+id_seguimiento
+);
+
+/*==============================================================*/
+/* Table: fabricante                                            */
+/*==============================================================*/
+create table fabricante (
+   id_fabricante        serial               not null,
+   fab_nombre           varchar(100)         null,
+   fab_descripcion      varchar(100)         null,
+   fab_contacto         varchar(25)          null,
+   fab_pagina_web       varchar(100)         null,
+   fab_email            varchar(100)         null,
+   fab_razon_social     varchar(100)         null,
+   constraint pk_fabricante primary key (id_fabricante)
+);
+
+/*==============================================================*/
+/* Index: fabricante_pk                                         */
+/*==============================================================*/
+create unique index fabricante_pk on fabricante (
+id_fabricante
+);
+
+/*==============================================================*/
+/* Table: fotografias_seguimiento                               */
+/*==============================================================*/
+create table fotografias_seguimiento (
+   id_seguimiento       int4                 null,
+   id_fotografia_seg    serial               null,
+   fseg_nombre          varchar(50)          null,
+   fseg_path            varchar(150)         null,
+   fseg_real            char(254)            null
+);
+
+/*==============================================================*/
+/* Index: relationship_14_fk                                    */
+/*==============================================================*/
+create  index relationship_14_fk on fotografias_seguimiento (
+id_seguimiento
+);
+
+/*==============================================================*/
+/* Table: fotografia_control                                    */
+/*==============================================================*/
+create table fotografia_control (
+   id_foto_control      serial               not null,
+   id_control           int4                 null,
+   fcont_nombre         varchar(50)          null,
+   fcont_path           varchar(150)         null,
+   fcont_real           char(254)            null,
+   constraint pk_fotografia_control primary key (id_foto_control)
+);
+
+/*==============================================================*/
+/* Index: fotografia_control_pk                                 */
+/*==============================================================*/
+create unique index fotografia_control_pk on fotografia_control (
+id_foto_control
+);
+
+/*==============================================================*/
+/* Index: posee_fk                                              */
+/*==============================================================*/
+create  index posee_fk on fotografia_control (
+id_control
+);
+
+/*==============================================================*/
+/* Table: fotografia_pallet                                     */
+/*==============================================================*/
+create table fotografia_pallet (
+   id_foto_pallet       serial               not null,
+   id_pallet            int4                 null,
+   fpall_nombre         varchar(50)          null,
+   fpall_path           varchar(150)         null,
+   fpall_real           char(254)            null,
+   constraint pk_fotografia_pallet primary key (id_foto_pallet)
+);
+
+/*==============================================================*/
+/* Index: fotografia_pallet_pk                                  */
+/*==============================================================*/
+create unique index fotografia_pallet_pk on fotografia_pallet (
+id_foto_pallet
+);
+
+/*==============================================================*/
+/* Index: debe_tener_fk                                         */
+/*==============================================================*/
+create  index debe_tener_fk on fotografia_pallet (
+id_pallet
+);
+
+/*==============================================================*/
+/* Table: fotografia_producto                                   */
+/*==============================================================*/
+create table fotografia_producto (
+   id_foto_producto     serial               not null,
+   id_producto          int4                 null,
+   fprod_nombre         varchar(100)         null,
+   fprod_path           varchar(150)         null,
+   fprod_real           char(254)            null,
+   constraint pk_fotografia_producto primary key (id_foto_producto)
+);
+
+/*==============================================================*/
+/* Index: fotografia_producto_pk                                */
+/*==============================================================*/
+create unique index fotografia_producto_pk on fotografia_producto (
+id_foto_producto
+);
+
+/*==============================================================*/
+/* Index: presenta_fk                                           */
+/*==============================================================*/
+create  index presenta_fk on fotografia_producto (
+id_producto
+);
+
+/*==============================================================*/
+/* Table: observacion_seguimiento                               */
+/*==============================================================*/
+create table observacion_seguimiento (
+   id_observacion_seg   serial               not null,
+   id_seguimiento       int4                 null,
+   oseg_descripcion     varchar(150)         null,
+   constraint pk_observacion_seguimiento primary key (id_observacion_seg)
+);
+
+/*==============================================================*/
+/* Index: observacion_seguimiento_pk                            */
+/*==============================================================*/
+create unique index observacion_seguimiento_pk on observacion_seguimiento (
+id_observacion_seg
+);
+
+/*==============================================================*/
+/* Index: relationship_13_fk                                    */
+/*==============================================================*/
+create  index relationship_13_fk on observacion_seguimiento (
+id_seguimiento
+);
+
+/*==============================================================*/
+/* Table: pallet                                                */
+/*==============================================================*/
+create table pallet (
+   id_pallet            serial               not null,
+   pall_codigo          varchar(100)         null,
+   pall_descripcion     varchar(150)         null,
+   constraint pk_pallet primary key (id_pallet)
+);
+
+/*==============================================================*/
+/* Index: pallet_pk                                             */
+/*==============================================================*/
+create unique index pallet_pk on pallet (
+id_pallet
+);
+
+/*==============================================================*/
+/* Table: producto                                              */
+/*==============================================================*/
+create table producto (
+   id_producto          serial               not null,
+   id_pallet            int4                 null,
+   id_fabricante        int4                 null,
+   prod_codigo          varchar(100)         null,
+   prod_especificaciones varchar(150)         null,
+   prod_estado_bateria  varchar(40)          null,
+   prod_fecha_produccion date                 null,
+   prod_fecha_venta     date                 null,
+   prod_fecha_mantenimiento date                 null,
+   prod_fecha_repone    date                 null,
+   constraint pk_producto primary key (id_producto)
+);
+
+/*==============================================================*/
+/* Index: producto_pk                                           */
+/*==============================================================*/
+create unique index producto_pk on producto (
+id_producto
+);
+
+/*==============================================================*/
+/* Index: contiene_fk                                           */
+/*==============================================================*/
+create  index contiene_fk on producto (
+id_pallet
+);
+
+/*==============================================================*/
+/* Index: fabrica_fk                                            */
+/*==============================================================*/
+create  index fabrica_fk on producto (
+id_fabricante
+);
+
+/*==============================================================*/
+/* Table: puntos_control                                        */
+/*==============================================================*/
+create table puntos_control (
+   id_control           serial               not null,
+   con_lugar            varchar(100)         null,
+   con_longitud         varchar(100)         null,
+   con_latitud          varchar(100)         null,
+   con_descripcion      varchar(100)         null,
+   constraint pk_puntos_control primary key (id_control)
+);
+
+/*==============================================================*/
+/* Index: puntos_control_pk                                     */
+/*==============================================================*/
+create unique index puntos_control_pk on puntos_control (
+id_control
+);
+
+/*==============================================================*/
+/* Table: seguimiento                                           */
+/*==============================================================*/
+create table seguimiento (
+   id_seguimiento       serial               not null,
+   id_control           int4                 null,
+   id_usuario           int4                 null,
+   id_alerta            int4                 null,
+   id_producto          int4                 null,
+   seg_fecha_llegada    date                 null,
+   seg_fecha_partida    date                 null,
+   seg_responsable_recibe varchar(100)         null,
+   seg_responsable_despacho varchar(100)         null,
+   seg_tiempo_empleado  decimal(6,2)         null,
+   seg_ultimo           varchar(5)           null,
+   seg_longitud         varchar(100)         null,
+   seg_latitud          varchar(100)         null,
+   constraint pk_seguimiento primary key (id_seguimiento)
+);
+
+/*==============================================================*/
+/* Index: seguimiento_pk                                        */
+/*==============================================================*/
+create unique index seguimiento_pk on seguimiento (
+id_seguimiento
+);
+
+/*==============================================================*/
+/* Index: se_incluye_fk                                         */
+/*==============================================================*/
+create  index se_incluye_fk on seguimiento (
+id_control
+);
+
+/*==============================================================*/
+/* Index: registra_fk                                           */
+/*==============================================================*/
+create  index registra_fk on seguimiento (
+id_usuario
+);
+
+/*==============================================================*/
+/* Index: controla_fk                                           */
+/*==============================================================*/
+create  index controla_fk on seguimiento (
+id_alerta
+);
+
+/*==============================================================*/
+/* Index: relationship_11_fk                                    */
+/*==============================================================*/
+create  index relationship_11_fk on seguimiento (
+id_producto
+);
+
+/*==============================================================*/
+/* Table: tipo_usuario                                          */
+/*==============================================================*/
+create table tipo_usuario (
+   id_tipo_usuario      serial               not null,
+   tusu_nombre          varchar(50)          null,
+   tus_abreviatura      varchar(10)          null,
+   tusu_acceso          int4                 null,
+   constraint pk_tipo_usuario primary key (id_tipo_usuario)
+);
+
+/*==============================================================*/
+/* Index: tipo_usuario_pk                                       */
+/*==============================================================*/
+create unique index tipo_usuario_pk on tipo_usuario (
+id_tipo_usuario
+);
+
+/*==============================================================*/
+/* Table: usuario                                               */
+/*==============================================================*/
+create table usuario (
+   id_usuario           serial               not null,
+   id_tipo_usuario      int4                 null,
+   usu_nombre           varchar(100)         null,
+   usu_apellido         varchar(100)         null,
+   usu_login            varchar(40)          null,
+   usu_password         varchar(40)          null,
+   usu_correo           varchar(100)         null,
+   usu_nivel            int4                 null,
+   usu_fotografia       char(254)            null,
+   usu_rol              varchar(50)          null,
+   usu_movil            varchar(100)         null,
+   usu_fecha_creacion   date                 null,
+   usu_fecha_modificacion date                 null,
+   usu_fecha_eliminacion date                 null,
+   usu_activo           int4                 null,
+   usu_eliminado        int4                 null,
+   constraint pk_usuario primary key (id_usuario)
+);
+
+/*==============================================================*/
+/* Index: usuario_pk                                            */
+/*==============================================================*/
+create unique index usuario_pk on usuario (
+id_usuario
+);
+
+/*==============================================================*/
+/* Index: relationship_12_fk                                    */
+/*==============================================================*/
+create  index relationship_12_fk on usuario (
+id_tipo_usuario
+);
+
+alter table cliente_final
+   add constraint fk_cliente__distribuy_seguimie foreign key (id_seguimiento)
+      references seguimiento (id_seguimiento)
+      on delete restrict on update restrict;
+
+alter table fotografias_seguimiento
+   add constraint fk_fotograf_relations_seguimie foreign key (id_seguimiento)
+      references seguimiento (id_seguimiento)
+      on delete restrict on update restrict;
+
+alter table fotografia_control
+   add constraint fk_fotograf_posee_puntos_c foreign key (id_control)
+      references puntos_control (id_control)
+      on delete restrict on update restrict;
+
+alter table fotografia_pallet
+   add constraint fk_fotograf_debe_tene_pallet foreign key (id_pallet)
+      references pallet (id_pallet)
+      on delete restrict on update restrict;
+
+alter table fotografia_producto
+   add constraint fk_fotograf_presenta_producto foreign key (id_producto)
+      references producto (id_producto)
+      on delete restrict on update restrict;
+
+alter table observacion_seguimiento
+   add constraint fk_observac_relations_seguimie foreign key (id_seguimiento)
+      references seguimiento (id_seguimiento)
+      on delete restrict on update restrict;
+
+alter table producto
+   add constraint fk_producto_contiene_pallet foreign key (id_pallet)
+      references pallet (id_pallet)
+      on delete restrict on update restrict;
+
+alter table producto
+   add constraint fk_producto_fabrica_fabrican foreign key (id_fabricante)
+      references fabricante (id_fabricante)
+      on delete restrict on update restrict;
+
+alter table seguimiento
+   add constraint fk_seguimie_controla_alerta foreign key (id_alerta)
+      references alerta (id_alerta)
+      on delete restrict on update restrict;
+
+alter table seguimiento
+   add constraint fk_seguimie_registra_usuario foreign key (id_usuario)
+      references usuario (id_usuario)
+      on delete restrict on update restrict;
+
+alter table seguimiento
+   add constraint fk_seguimie_relations_producto foreign key (id_producto)
+      references producto (id_producto)
+      on delete restrict on update restrict;
+
+alter table seguimiento
+   add constraint fk_seguimie_se_incluy_puntos_c foreign key (id_control)
+      references puntos_control (id_control)
+      on delete restrict on update restrict;
+
+alter table usuario
+   add constraint fk_usuario_relations_tipo_usu foreign key (id_tipo_usuario)
+      references tipo_usuario (id_tipo_usuario)
+      on delete restrict on update restrict;
+
