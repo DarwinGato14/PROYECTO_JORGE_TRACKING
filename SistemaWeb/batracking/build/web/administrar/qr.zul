@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+           viewModel="@id('vm') @init('com.ec.controlador.Administrar')" >
+        <!--<timer id="timer" delay="300000" repeats="true" onTimer="@command('recargarLecturasFechas')" ></timer>-->
+        
+        <tabbox >
+            <tabs >
+                <tab label="Informacion por unidad..." sclass="menutabs" image="../imagenes/user.png"/>
+                
+            </tabs>
+            <tabpanels>
+                
+                <tabpanel  >
+                        <image src="/imagenes/qrcode.gif" align="center"/>
+                </tabpanel>
+            </tabpanels>
+            
+        </tabbox>
+    </hbox>
+</zk>

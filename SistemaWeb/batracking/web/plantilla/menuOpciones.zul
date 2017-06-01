@@ -1,0 +1,25 @@
+<?init class="com.ec.seguridad.Autentificador"?>
+<zk>
+
+
+    <grid hflex="1" vflex="1" viewModel="@id('vm')" id="gridMenu" apply="com.ec.controlador.MenuOpciones">
+    
+        <columns>
+            <column width="100%"/>
+        </columns>
+        <rows >
+            <row sclass="sidebar-fn">      
+                <hlayout  style="border:2px;padding-top:10px;padding-left:5px"   width="90%">
+                    <image src="/imagenes/bus.jpg" height="100px" width="100%" id="btnPrincipal" />
+                </hlayout>
+            </row>
+                
+            <row>
+                <button id="btnRutas" label="RUTAS"   sclass="botonMenuLateral" />
+            </row>
+            
+           
+        </rows>
+    </grid>
+
+</zk>

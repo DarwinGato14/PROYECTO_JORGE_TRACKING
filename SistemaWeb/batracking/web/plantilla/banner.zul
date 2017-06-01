@@ -1,0 +1,22 @@
+    <div hflex="1" vflex="1" sclass="banner">
+    <hbox hflex="1" vflex="1" align="center" >
+        <div width="100%">
+            <label value="COMPAÑIA DE TRANSPORTE URBANO TRANSALFA S.A." sclass="banner-head" />
+<!--            <space bar="false" width="100%" /> 
+            <a href="/administrar/lectura.zul" style="color:white" sclass="link-menu"  >OBTENER INFORMACION</a>
+            <a href="/administrar/rutas.zul" target="_blank" style="color:white" sclass="link-menu"  >TABLA DE INFORMACION</a>-->
+        </div>
+        <div width="100%">
+        </div>
+        <hbox apply="com.ec.controlador.LogoutController" width="100%"
+              hflex="1" vflex="1" pack="end" align="end" >
+            <label value="Usuario:" sclass="info" />
+            <label value="${sessionScope.usuario.nombreUsuario}" if="${not sessionScope.userCredential.anonymous}" sclass="info" />
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <label id="logout" value="Salir" if="${not sessionScope.userCredential.anonymous}" sclass="logout"/>
+        </hbox>       
+    </hbox>
+</div>

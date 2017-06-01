@@ -33,23 +33,33 @@ public class Administrar {
     @AfterCompose
     public void afterCompose(@ContextParam(ContextType.VIEW) Component view) throws Exception {
         Selectors.wireComponents(view, this, false);
-        QRCode barcode = new QRCode();
-        barcode.setData("A");
-        barcode.setDataMode(QRCode.MODE_BYTE);
-        barcode.setVersion(10);
-        barcode.setEcl(QRCode.ECL_M);
+
+    }
+
+    public Administrar() {
+        try {
+            QRCode barcode = new QRCode();
+            barcode.setData("CODIGO QR GENERADO PARA JORGE PANTOJA");
+            barcode.setDataMode(QRCode.MODE_BYTE);
+            barcode.setVersion(10);
+            barcode.setEcl(QRCode.ECL_M);
 
 
-        barcode.setUOM(uom);
-        barcode.setModuleSize(moduleSize);
-        barcode.setLeftMargin(leftMargin);
-        barcode.setRightMargin(rightMargin);
-        barcode.setTopMargin(topMargin);
-        barcode.setBottomMargin(bottomMargin);
-        barcode.setResolution(resolution);
-        barcode.setRotate(rotate);
+            barcode.setUOM(uom);
+            barcode.setModuleSize(moduleSize);
+            barcode.setLeftMargin(leftMargin);
+            barcode.setRightMargin(rightMargin);
+            barcode.setTopMargin(topMargin);
+            barcode.setBottomMargin(bottomMargin);
+            barcode.setResolution(resolution);
+            barcode.setRotate(rotate);
 
-        barcode.renderBarcode("f://qrcode.gif");
+            barcode.renderBarcode("f://qrcode.gif");
+            System.out.println("ingresa a crear");
+        } catch (Exception e) {
+
+            System.out.println("fallo  " + e.getMessage());
+        }
     }
 
     @Command
