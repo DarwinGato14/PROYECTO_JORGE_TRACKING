@@ -1,0 +1,35 @@
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?page title="Sistema de ventas" contentType="text/html;charset=UTF-8"?>
+
+
+<zk contentStyle="overflow:auto" >
+
+  
+    <window id="loginWin" border="none" style="height:auto"
+            apply="com.ec.controlador.LoginController">
+        <borderlayout height="1000px" width="100%" >
+            <north  maxsize="300" splittable="false" collapsible="false">
+                <div style="background:#23a865" >
+                    <groupbox contentStyle="border: 4px black" height="60px" >
+                        <hlayout spacing="30px" style="padding-top: 20px;">
+                            <label value="Usuario: " style="color:white;font-weight:bold"/>	  									
+                            <textbox id="account" width="100%"  value="" constraint="no empty: Ingrese su nombre de usuario."/>						
+                            <label value="Contraseña: " style="color:white;font-weight:bold"/>	
+                            <textbox id="password" value="" type="password" constraint="no empty: Ingrese una clave." width="100%"/>						
+                            <button label="ENTRAR" src="/imagenes/user.png"  width="100%" id="buttonEntrar"/>							
+                                    
+                        </hlayout>		
+                        <label id="message" sclass="warn" value="" />
+                    </groupbox>                   
+                </div>
+            </north>
+
+            <center >
+                
+            </center>
+            <south>
+                   
+            </south>
+        </borderlayout>
+    </window>
+</zk>
