@@ -9,7 +9,7 @@
             apply="com.ec.controlador.LoginController">
         <borderlayout height="1000px" width="100%" >
             <north  maxsize="300" splittable="false" collapsible="false">
-                <div style="background:#23a865" >
+                <div style="background:#000000" >
                     <groupbox contentStyle="border: 4px black" height="60px" >
                         <hlayout spacing="30px" style="padding-top: 20px;">
                             <label value="Usuario: " style="color:white;font-weight:bold"/>	  									

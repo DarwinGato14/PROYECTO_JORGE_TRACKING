@@ -1,22 +1,27 @@
-    <div hflex="1" vflex="1" sclass="banner">
+<?link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css"?>   
+
+
+<div hflex="1" vflex="1" sclass="banner">
     <hbox hflex="1" vflex="1" align="center" >
-        <div width="100%">
-            <label value="COMPAÑIA DE TRANSPORTE URBANO TRANSALFA S.A." sclass="banner-head" />
-<!--            <space bar="false" width="100%" /> 
-            <a href="/administrar/lectura.zul" style="color:white" sclass="link-menu"  >OBTENER INFORMACION</a>
-            <a href="/administrar/rutas.zul" target="_blank" style="color:white" sclass="link-menu"  >TABLA DE INFORMACION</a>-->
+        <div width="100%" >
+            <button style="background-color: #000000"  class="btn btn-outline-secondary">Menu</button>
+            <button style="background-color: #000000" class="btn btn-outline-secondary">Administracion</button>
+            <button style="background-color: #000000" class="btn btn-outline-secondary">Generar Códigos</button>
+            <button style="background-color: #000000" class="btn btn-outline-secondary">Seguimiento</button>
+            <button style="background-color: #000000" class="btn btn-outline-secondary">Reportes</button>
+            
         </div>
-        <div width="100%">
-        </div>
-        <hbox apply="com.ec.controlador.LogoutController" width="100%"
-              hflex="1" vflex="1" pack="end" align="end" >
-            <label value="Usuario:" sclass="info" />
-            <label value="${sessionScope.usuario.nombreUsuario}" if="${not sessionScope.userCredential.anonymous}" sclass="info" />
-            <separator bar="true"/>
-            <separator bar="true"/>
-            <separator bar="true"/>
-            <separator bar="true"/>
-            <label id="logout" value="Salir" if="${not sessionScope.userCredential.anonymous}" sclass="logout"/>
-        </hbox>       
+       
+            <hbox apply="com.ec.controlador.LogoutController" width="100%"
+              hflex="1" vflex="2" pack="end" align="end" >
+                <label value="Usuario:" sclass="info" />
+                <label value="${sessionScope.usuario.nombreUsuario}" if="${not sessionScope.userCredential.anonymous}" sclass="info" />
+                <separator bar="true"/>
+                <separator bar="true"/>
+                <separator bar="true"/>
+                <separator bar="true"/>
+                <label id="logout" value="Salir" if="${not sessionScope.userCredential.anonymous}" sclass="logout"/>
+            </hbox>   
+         
     </hbox>
 </div>

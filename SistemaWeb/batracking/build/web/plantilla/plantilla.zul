@@ -1,6 +1,6 @@
 <zk>
     <borderlayout width="100%" >
-        <north  height="80px" border="none" >
+        <north  height="50px" border="none" >
             <include src="/plantilla/banner.zul"/>
             
         </north>
