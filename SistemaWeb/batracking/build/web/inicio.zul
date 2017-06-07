@@ -1,5 +1,5 @@
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
-<?page title="Sistema de ventas" contentType="text/html;charset=UTF-8"?>
+<?page title="Tracking" contentType="text/html;charset=UTF-8"?>
 
 
 <zk contentStyle="overflow:auto" >

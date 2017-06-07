@@ -5,7 +5,13 @@
  */
 package com.ec.controlador;
 
-import com.barcodelib.barcode.QRCode;
+import com.ec.entidad.Producto;
+import com.ec.servicio.ServicioProducto;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -14,6 +20,7 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
+import org.zkoss.zul.ListModelList;
 
 /**
  *
@@ -21,14 +28,13 @@ import org.zkoss.zk.ui.select.Selectors;
  */
 public class Administrar {
 
-    private static int uom = 0;        //  0 - Pixel, 1 - CM, 2 - Inch
-    private static int resolution = 72;
-    private static float leftMargin = 80.000f;
-    private static float rightMargin = 80.000f;
-    private static float topMargin = 80.000f;
-    private static float bottomMargin = 80.000f;
-    private static int rotate = 0;     //  0 - 0, 1 - 90, 2 - 180, 3 - 270
-    private static float moduleSize = 5.000f;
+//servicios 
+    ServicioProducto servicioProducto = new ServicioProducto();
+    //crear un factura nueva
+    private Producto productoDAO = new Producto();
+    private ListModelList<Producto> listaProductosModel;
+    private List<Producto> listaProductosDAODatos = new ArrayList<Producto>();
+    private Set<Producto> registrosSeleccionados = new HashSet<Producto>();
 
     @AfterCompose
     public void afterCompose(@ContextParam(ContextType.VIEW) Component view) throws Exception {
@@ -37,34 +43,62 @@ public class Administrar {
     }
 
     public Administrar() {
-        try {
-            QRCode barcode = new QRCode();
-            barcode.setData("CODIGO QR GENERADO PARA JORGE PANTOJA");
-            barcode.setDataMode(QRCode.MODE_BYTE);
-            barcode.setVersion(10);
-            barcode.setEcl(QRCode.ECL_M);
+        cargarInformacionProductos();
+        getProductos();
+    }
 
+    private void getProductos() {
+        setListaProductosModel(new ListModelList<Producto>(getListaProductosDAODatos()));
+        ((ListModelList<Producto>) listaProductosModel).setMultiple(true);
+    }
 
-            barcode.setUOM(uom);
-            barcode.setModuleSize(moduleSize);
-            barcode.setLeftMargin(leftMargin);
-            barcode.setRightMargin(rightMargin);
-            barcode.setTopMargin(topMargin);
-            barcode.setBottomMargin(bottomMargin);
-            barcode.setResolution(resolution);
-            barcode.setRotate(rotate);
+    @Command
+    @NotifyChange("listaProductosModel")
+    public void seleccionarRegistros() {
 
-            barcode.renderBarcode("f://qrcode.gif");
-            System.out.println("ingresa a crear");
-        } catch (Exception e) {
+        registrosSeleccionados = ((ListModelList<Producto>) getListaProductosModel()).getSelection();
 
-            System.out.println("fallo  " + e.getMessage());
-        }
+    }
+
+    private void cargarInformacionProductos() {
+        listaProductosDAODatos = servicioProducto.findAll();
     }
 
     @Command
     @NotifyChange({"listaRutas"})
     public void doRutas() {
         Executions.sendRedirect("/administrar/rutas.zul");
+    }
+
+    public Producto getProductoDAO() {
+        return productoDAO;
+    }
+
+    public void setProductoDAO(Producto productoDAO) {
+        this.productoDAO = productoDAO;
+    }
+
+    public ListModelList<Producto> getListaProductosModel() {
+        return listaProductosModel;
+    }
+
+    public void setListaProductosModel(ListModelList<Producto> listaProductosModel) {
+        this.listaProductosModel = listaProductosModel;
+    }
+
+    public List<Producto> getListaProductosDAODatos() {
+        return listaProductosDAODatos;
+    }
+
+    public void setListaProductosDAODatos(List<Producto> listaProductosDAODatos) {
+        this.listaProductosDAODatos = listaProductosDAODatos;
+    }
+
+    public Set<Producto> getRegistrosSeleccionados() {
+        return registrosSeleccionados;
+    }
+
+    public void setRegistrosSeleccionados(Set<Producto> registrosSeleccionados) {
+        this.registrosSeleccionados = registrosSeleccionados;
     }
 }

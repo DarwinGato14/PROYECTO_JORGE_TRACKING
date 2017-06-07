@@ -70,6 +70,10 @@ public class Producto implements Serializable {
     @Column(name = "prod_fecha_repone")
     @Temporal(TemporalType.DATE)
     private Date prodFechaRepone;
+    @Size(max = 50)
+    @Column(name = "prod_modelo")
+    private String prodModelo;
+    
     @OneToMany(mappedBy = "idProducto")
     private Collection<FotografiaProducto> fotografiaProductoCollection;
     @JoinColumn(name = "id_pallet", referencedColumnName = "id_pallet")
@@ -176,6 +180,16 @@ public class Producto implements Serializable {
     public void setIdFabricante(Fabricante idFabricante) {
         this.idFabricante = idFabricante;
     }
+
+    public String getProdModelo() {
+        return prodModelo;
+    }
+
+    public void setProdModelo(String prodModelo) {
+        this.prodModelo = prodModelo;
+    }
+    
+    
 
     @XmlTransient
     public Collection<Seguimiento> getSeguimientoCollection() {

@@ -5,18 +5,16 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
-           viewModel="@id('vm') @init('com.ec.controlador.Administrar')" >
-        <!--<timer id="timer" delay="300000" repeats="true" onTimer="@command('recargarLecturasFechas')" ></timer>-->
-        
+          viewModel="@id('vm') @init('com.ec.controlador.Administrar')" >
         <tabbox >
             <tabs >
-                <tab label="Informacion por unidad..." sclass="menutabs" image="../imagenes/user.png"/>
+                <tab label="Menu.." sclass="menutabs" image="../imagenes/user.png"/>
                 
             </tabs>
             <tabpanels>
                 
                 <tabpanel  >
-                        <image src="/imagenes/qrcode.gif" align="center"/>
+                    <image src="/imagenes/qrcode.gif" align="center"/>
                 </tabpanel>
             </tabpanels>
             

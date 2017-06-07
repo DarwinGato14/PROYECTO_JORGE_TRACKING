@@ -278,6 +278,25 @@
     font-weight:bold
 
 }
+.botonMenu{
+    border: none;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    -webkit-box-shadow: 0px 0px 0px 0;
+    box-shadow: 0px 0px 0px 0;
+    font: normal 11px/normal "Open Sans", Helvetica, sans-serif;
+    text-transform: uppercase;
+    background: #828282;
+    /*color: #ffffff;*/
+    padding: 2px 15px 2px 15px;
+    cursor: pointer;
+    font-weight:bold;
+    color: #292b2c;
+    background-color: #fff;
+    border-color: #ccc;
+
+}
 
 .botonLista{
 
@@ -294,7 +313,7 @@
     padding: 2px 15px 2px 15px;
     cursor: pointer;
     font-weight:bold;
-    
+
 
 }
 

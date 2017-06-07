@@ -15,6 +15,9 @@ public class HelperPersistencia {
 
     public static EntityManager getEMF() {
         EntityManager emf = (EntityManager) Persistence.createEntityManagerFactory("batrackingPU").createEntityManager();
+
+//        entityManager.getTransaction().begin();
+//java.sql.Connection connection = entityManager.unwrap(java.sql.Connection.class);
         return emf;
     }
 }

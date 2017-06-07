@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+          viewModel="@id('vm') @init('com.ec.controlador.Administrar')" >
+        <tabbox >
+            <tabs >
+                <tab label="Informacion por unidad..." sclass="menutabs" image="../imagenes/user.png"/>
+                
+            </tabs>
+            <tabpanels>
+                
+                <tabpanel  >
+                    <listbox  model="@load(vm.listaProductosModel)"
+                              nonselectableTags="*" checkmark="true"  
+                              multiple="true" mold="paging"
+                              pageSize="10" 
+                              onSelect="@command('seleccionarRegistros')"  width="98%">
+                        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                                        
+                        <listhead>
+                            <listheader width="5%"  label="" align="left" />
+                            <listheader width="10%"  label="CODIGO" align="left" />
+                            <listheader width="29%"  label="PRODUCTO" align="left"  /> 
+                            <listheader width="7%"  label="MODELO" align="left" />
+                            <!--<listheader width="15%"  label="TIPO VENTA" align="left" />-->
+                            <listheader width="8%"  label="FECHA PRODUC." align="left" /> 
+                            <listheader width="7%"  label="ESTADO" align="left" />
+                            <listheader width="8%"  label="LOTE" align="left" />
+                            <listheader width="26%"  label="ACCION" align="left" />
+                                                                                                                            
+                        </listhead>
+                    
+                        <template name="model">                                                            
+                            <listitem>
+                                <listcell>
+                                                    
+                                </listcell>
+                                <listcell >
+                                    <label
+                                        value="@bind(each.prodCodigo)"  width="99%" />
+                                </listcell>
+                             
+                                <listcell >
+                                    <label  value="@bind(each.prodEspecificaciones)" width="99%" />
+                                </listcell>
+                                <listcell >
+                                    <label  value="@bind(each.prodModelo)" width="99%" />
+                                </listcell>
+                                <listcell >
+                                   
+                                    <datebox compact="true" value="@bind(each.prodFechaProduccion)" 
+                                             buttonVisible="false"  
+                                             readonly="true" 
+                                             format="medium" width="90%" />
+                                   
+                                    <!--<label  value="@bind(each.prodFechaProduccion)" width="99%" />-->
+                                </listcell>
+                                <listcell >
+                                    <label  value="@bind(each.prodEstadoBateria)" width="99%" />
+                                </listcell>
+                                
+                                <listcell >
+                                    <label  value="@bind(each.idPallet.pallDescripcion)" width="99%" />
+                                </listcell>
+                                <listcell >
+                                    <button  src="/imagenes/update.png" 
+                                             label="Editar" onClick="@command('reporteCotizacion',valor=each)" 
+                                             tooltiptext="Editar" class="btn btn-warning"/>
+                                    <button  src="/imagenes/delete.png" 
+                                             label="Eliminar" onClick="@command('reporteCotizacion',valor=each)" 
+                                             tooltiptext="Eliminar" class="btn btn-danger"/>
+                                    <button  src="/imagenes/information.png" 
+                                             label="Detalle" onClick="@command('reporteCotizacion',valor=each)" 
+                                             tooltiptext="Detalle"  class="btn btn-info"/>
+                                </listcell>
+                                
+                            </listitem>
+                        </template>
 
+                    </listbox>
+                </tabpanel>
+            </tabpanels>
+            
+        </tabbox>
+    </hbox>
 </zk>
